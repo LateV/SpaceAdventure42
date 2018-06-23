@@ -6,7 +6,7 @@
 /*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 16:29:00 by lburlach          #+#    #+#             */
-/*   Updated: 2018/06/23 18:05:58 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/06/23 20:03:50 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ public:
 
 private:
 	const Window* _win;
+	std::string * _hm;
+	std::string * _tmp;
 };
 
 
