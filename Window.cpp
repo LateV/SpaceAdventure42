@@ -6,7 +6,7 @@
 /*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 13:35:00 by lburlach          #+#    #+#             */
-/*   Updated: 2018/06/23 20:33:05 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/06/23 21:18:58 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,6 +189,6 @@ int Window::startButton() {
 
 void Window::clearWindow() {
 	wclear(this->getWinPtr());
-//	box(this->getWinPtr(), 0, 0);
+	box(this->getWinPtr(), 0, 0);
 	wrefresh(this->getWinPtr());
 }

@@ -6,7 +6,7 @@
 /*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 13:27:00 by lburlach          #+#    #+#             */
-/*   Updated: 2018/06/23 18:30:31 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/06/23 21:44:36 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,8 @@ int 	main(void)
 	}
 	init_win->clearWindow();
 	while (wgetch(init_win->getWinPtr()) != 10) {
-		game->background();
+		game->background2();
 		wrefresh(init_win->getWinPtr());
-		delay_output(10);
 	}
 	getch();
 //	game->background();

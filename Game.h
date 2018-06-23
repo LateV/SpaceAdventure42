@@ -6,7 +6,7 @@
 /*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 16:29:00 by lburlach          #+#    #+#             */
-/*   Updated: 2018/06/23 20:03:50 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/06/23 21:53:10 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,13 @@ public:
 	Game &operator=(Game const &rhs);
 	const Window * getPtrOnWin(void) const;
 	void background(void);
+	void background2(void);
 
 private:
 	const Window* _win;
-	std::string * _hm;
-	std::string * _tmp;
+	int * _indeces;
+	char * _tmp;
+	int _map_iter;
 };
 
 
