@@ -3,7 +3,7 @@ NAME = ft_retro
 SRC =	main.cpp         		\
 		player.cpp         		\
 		Game.cpp 				\
-		Win_CL.cpp 				\
+		Window.cpp 				\
 		bullet.cpp 				\
 		Foe.cpp 				\
 		Score.cpp 				\

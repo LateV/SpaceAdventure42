@@ -6,7 +6,7 @@
 /*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 13:35:00 by lburlach          #+#    #+#             */
-/*   Updated: 2018/06/24 20:23:29 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/06/24 22:13:05 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ Window::Window(void) {
 	cbreak();
 	getmaxyx(stdscr, this->_yMax, this->_xMax);
 	this->_err = false;
-	this->_hp = 100;
+	this->_hp = 10000;
 	this->_score = 0;
 /*	std::stringstream tmp;
 	tmp<<this->getYMax()<<" "<<this->getXMax();

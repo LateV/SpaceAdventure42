@@ -106,31 +106,30 @@ void Foe::display() {
 			  this->getXPop(), "     ");
 	mvwprintw(this->getPtrOnWin()->getWinPtr(), this->getYPop() - 6,
 			  this->getXPop(), "     ");
+	if(this->getPtrOnWin()->getScore() > 300)
+	{
+		wclear(this->getPtrOnWin()->getWinPtr());
+		mvwprintw(this->getPtrOnWin()->getWinPtr(), this->getPtrOnWin()->getYMax()/2,
+				  this->getPtrOnWin()->getXMax()/2, "VICTORY!! GJ!\n");
+		wrefresh(this->getPtrOnWin()->getWinPtr());
+		exit(0);
+	}
+	if(this->getPtrOnWin()->getHp() < 0)
+	{
+		wclear(this->getPtrOnWin()->getWinPtr());
+		mvwprintw(this->getPtrOnWin()->getWinPtr(), this->getPtrOnWin()->getYMax()/2,
+				  this->getPtrOnWin()->getXMax()/2, "GAME OVER !\n");
+		wrefresh(this->getPtrOnWin()->getWinPtr());
+		exit(0);
+	}
 	if (!this->_dead) {
 		if (this->checkCollisionWithBullet()) {
 
 			this->getPtrOnWin()->setScore(this->getPtrOnWin()->getScore() + 10);
-			if(this->getPtrOnWin()->getScore() > 300)
-			{
-				wclear(this->getPtrOnWin()->getWinPtr());
-				mvwprintw(this->getPtrOnWin()->getWinPtr(), this->getPtrOnWin()->getYMax()/2,
-				  this->getPtrOnWin()->getXMax()/2, "VICTORY!! GJ!\n");
-				wrefresh(this->getPtrOnWin()->getWinPtr());
-				exit(0);
-			}
 			this->_dead = true;
 		}
-		if (this->checkCollision())
-		{
+		if (this->checkCollision()) {
 			this->getPtrOnWin()->setHp(this->getPtrOnWin()->getHp() - 50);
-			if(this->getPtrOnWin()->getHp() < 0)
-			{
-				wclear(this->getPtrOnWin()->getWinPtr());
-				mvwprintw(this->getPtrOnWin()->getWinPtr(), this->getPtrOnWin()->getYMax()/2,
-				  this->getPtrOnWin()->getXMax()/2, "GAME OVER !\n");
-				wrefresh(this->getPtrOnWin()->getWinPtr());
-				exit(0);
-			}
 		}
 		mvwprintw(this->getPtrOnWin()->getWinPtr(), this->getYPop(),
 				  this->getXPop(), "  \\\\");
