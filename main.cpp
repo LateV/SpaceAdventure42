@@ -7,16 +7,16 @@ int main(int argc, char ** argv)
 	noecho();	
 
 
-	WINDOW * win = newwin(50, 50, 1, 1);	
+	WINDOW * win = newwin(100, 100, 1, 1);	
 	refresh();
 	wrefresh(win);
 	player  * player1 = new player(win, 10 , 10);
-	do {
+	do
+	{
 		player1->display();
 		wrefresh(win);
-		// wclear(win);
 	}while(player1->get_mv() != 'q');
-	player1->display();
+
 	endwin();
 	// deallocates memory and ncueses
 	return(0);
