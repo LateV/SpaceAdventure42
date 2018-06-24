@@ -109,7 +109,7 @@ void Game::background2() {
 		this->_map_iter = this->getPtrOnWin()->getXMax() - 2;
 	}
 	for (int j = 1, i = 0; j < this->getPtrOnWin()->getYMax() - 1; j++, i++) {
-		mvwprintw(this->getPtrOnWin()->getWinPtr(), j, this->_map_iter--, this->_tmp + this->_indeces[i]);
+		mvwprintw(this->getPtrOnWin()->getWinPtr(), j, 1, this->_tmp + this->_indeces[i]);
 		if (this->_indeces[i] > (this->getPtrOnWin()->getXMax() - 2))
 		{
 			this->_indeces[i] = 0;
