@@ -23,7 +23,58 @@ player::player(WINDOW * win,int y, int x)
 	getmaxyx(this->curwin, this->max_y, this->max_x);
 	keypad(this->curwin, true);
 }
+player::player(const player &copy)
+{
+	*this = copy;
+}
+player::player(void){}
 
+int player::get_x_l(void) const
+{
+	return(this->x_l);
+}
+
+int player::get_y_l(void) const
+{
+	return(this->y_l);
+}
+
+int player::get_max_y(void) const
+{
+	return(this->max_y);
+}
+
+int player::get_max_x(void) const
+{
+	return(this->max_x);
+}
+
+int player::get_curr_shot(void) const
+{
+	return(this->curr_shot);
+}
+
+bullet *player::get_p_bull(void) const
+{
+	return(this->p_bull);
+}
+
+WINDOW *player::get_curwin(void) const
+{
+	return(this->curwin);
+}
+
+player &player::operator=(const player &op)
+{
+	this->curr_shot = op.get_curr_shot();
+	this->p_bull = op.get_p_bull();
+	this->curwin = op.get_curwin();
+	this->x_l = op.get_x_l();
+	this->y_l = op.get_y_l();
+	this->max_y = op.get_max_y();
+	this->max_x = op.get_max_x();
+	return(*this);
+}
 player::~player()
 {
 	delete[] p_bull;
@@ -181,12 +232,4 @@ void player::display()
 	mvwaddch(curwin, y_l + 3, x_l + 4, '_');
 	mvwaddch(curwin, y_l + 3, x_l + 5, '/');
 
-}
-
-int player::getXL() {
-	return this->x_l;
-}
-
-int player::getYL() {
-	return this->y_l;
 }

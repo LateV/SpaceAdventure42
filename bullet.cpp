@@ -1,10 +1,6 @@
 #include "bullet.hpp"
 
-bullet::bullet()
-{
-
-}
-
+bullet::bullet(){}
 bullet::bullet(WINDOW * win)
 {
 	active = 0;
@@ -12,10 +8,44 @@ bullet::bullet(WINDOW * win)
 	y_b = 0;
 	getmaxyx(win, max_y, max_x);
 }
+bullet::~bullet(){}
 
-bullet::~bullet()
+WINDOW *bullet::get_curwin(void) const
 {
+	return(this->curwin);
+}
 
+int bullet::get_x_b(void) const
+{
+	return(this->x_b);
+}
+
+int bullet::get_y_b(void) const
+{
+	return(this->y_b);
+}
+int bullet::get_max_x(void) const
+{
+	return(max_x);
+}
+int bullet::get_max_y(void) const
+{
+	return(max_y);
+}
+int bullet::get_active(void) const
+{
+	return(this->active);
+}
+
+
+bullet &bullet::operator=(const bullet &op)
+{
+	this->curwin = op.get_curwin();
+	this->x_b = op.get_x_b();
+	this->y_b = op.get_y_b();
+	this->max_x = op.get_max_x();
+	this->max_y = op.get_max_y();
+	return(*this);
 }
 
 void bullet::init_bull(WINDOW * win)
@@ -27,10 +57,6 @@ void bullet::init_bull(WINDOW * win)
 	getmaxyx(curwin, max_y, max_x);
 }
 
-int bullet::get_active(void)
-{
-	return(this->active);
-}
 
 void bullet::shot(int x, int y)
 {
@@ -47,15 +73,17 @@ void bullet::p_bull_mv()
 	if(x_b > max_x)
 		active = 0;
 }
+
 void bullet::e_bull_mv()
 {
 	x_b--;
 	if(x_b < 0)
 		active = 0;
 }
+
 void bullet::display(void)
 {
-	if(active == 1)
+	if(active == 1 && x_b < max_x - 1)
 	{
 		mvwaddch(curwin, y_b, x_b - 1, ' ');
 		mvwaddch(curwin, y_b, x_b , 'o');
