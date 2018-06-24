@@ -31,6 +31,7 @@ public:
 	void setDead(bool mean);
 	int checkCollision(void);
 	int checkCollisionWithBullet(void);
+	void checkCollisionForPl(void);
 private:
 	int curr_shot;
 	static const bool _body[6][4];

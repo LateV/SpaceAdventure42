@@ -1,11 +1,7 @@
 #ifndef BULLET_HPP
 #define BULLET_HPP
 
-#include <ncurses.h>
-#include <locale>
-#include <string>
-#include <iostream>
-
+#include "space_fantasy.h"
 
 class bullet{
 public:

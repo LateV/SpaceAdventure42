@@ -14,7 +14,6 @@
 #include "Window.h"
 #include "Game.h"
 #include "Score.h"
-#include "player.hpp"
 
 int 	main(void)
 {

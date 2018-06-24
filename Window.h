@@ -6,13 +6,12 @@
 /*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 13:35:00 by lburlach          #+#    #+#             */
-/*   Updated: 2018/06/24 20:18:40 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/06/24 21:39:13 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef D04_WINDOW_H
 #define D04_WINDOW_H
-#include <iostream>
 #include "space_fantasy.h"
 
 class Window {
