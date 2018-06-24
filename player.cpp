@@ -1,6 +1,11 @@
 #include "player.hpp"
 
-
+const bool player::body[4][10] = {
+		{false, false, false, true, true, false, false, false, false, false},
+		{false, false, false, true, false, true, true, true, true, false},
+		{true, true, true, true, true, true, true, true, true, true},
+		{false, false, false, true, true, true, false, false, false, false}
+};
 player::player(WINDOW * win,int y, int x)
 {
 	curr_shot = 0;
@@ -15,7 +20,6 @@ player::player(WINDOW * win,int y, int x)
 		p_bull[i].init_bull(curwin);
 		i++;
 	}
-
 	getmaxyx(this->curwin, this->max_y, this->max_x);
 	keypad(this->curwin, true);
 }
@@ -229,5 +233,3 @@ void player::display()
 	mvwaddch(curwin, y_l + 3, x_l + 5, '/');
 
 }
-
-
