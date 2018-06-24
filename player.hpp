@@ -2,9 +2,8 @@
 #define PLAYER_HPP
 
 #include <ncurses.h>
-#include <locale>
-#include <string>
 #include <iostream>
+#include "bullet.hpp"
 
 class player {
 public:
@@ -17,13 +16,13 @@ public:
 	void display(void);
 	int get_mv(void);
 private:
+	int curr_shot;
+	bullet *p_bull;
 	WINDOW * curwin;
 	int x_l;
 	int y_l;
 	int max_y; //max size of win.
-	int max_x; //
-	int min_y;
-	int min_x;
+	int max_x;
 	int body [4][10];
 };
 

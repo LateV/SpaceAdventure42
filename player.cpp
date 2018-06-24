@@ -1,11 +1,20 @@
 #include "player.hpp"
 
+
 player::player(WINDOW * win,int y, int x)
 {
+	curr_shot = 0;
+	int i = 0;
 	this->curwin = win;
 	x_l = x;
 	y_l = y;
+	p_bull = new bullet[1000];
 
+	while(i < 1000)
+	{
+		p_bull[i].init_bull(curwin);
+		i++;
+	}
 	body[0][0] = 0;
 	body[0][1] = 0;
 	body[0][2] = 0;
@@ -56,7 +65,7 @@ player::player(WINDOW * win,int y, int x)
 
 player::~player()
 {
-
+	delete[] p_bull;
 }
 void player::mvup()
 {
@@ -67,6 +76,7 @@ void player::mvup()
 	{
 		while(j < 4)
 		{
+
 				mvwaddch(curwin, y_l + j, x_l + i, ' ');
 			j++;
 		}
@@ -74,8 +84,8 @@ void player::mvup()
 		i++;
 	}
 	y_l--;
-	if(y_l < min_y)
-		y_l = min_y;
+	if(y_l < 1)
+		y_l = 1;
 }
 
 void player::mvdown()
@@ -86,7 +96,8 @@ void player::mvdown()
 	while(i < 10)
 	{
 		while(j < 4)
-		{
+		{	
+
 				mvwaddch(curwin, y_l + j, x_l + i, ' ');
 			j++;
 		}
@@ -94,8 +105,8 @@ void player::mvdown()
 		i++;
 	}
 	y_l++;
-	if(y_l > max_y - 4)
-		y_l = max_y - 4;
+	if(y_l > max_y - 5)
+		y_l = max_y - 5;
 }
 
 void player::mvleft()
@@ -114,8 +125,8 @@ void player::mvleft()
 		i++;
 	}
 	x_l--;
-	if(x_l < min_x)
-		x_l = min_x;
+	if(x_l < 1)
+		x_l = 1;
 }
 
 void player::mvright()
@@ -134,8 +145,8 @@ void player::mvright()
 		i++;
 	}	
 	x_l++;
-	if(x_l > max_x - 10)
-		x_l = max_x - 10;
+	if(x_l > max_x - 11)
+		x_l = max_x - 11;
 }
 
 int  player::get_mv()
@@ -144,6 +155,10 @@ int  player::get_mv()
 	int mv = wgetch(curwin);
 	switch(mv)
 	{
+		case ' ':
+			p_bull[curr_shot].shot(x_l + 9, y_l + 2);
+			curr_shot++;
+			break;
 		case 27:
 			wclear(this->curwin);
 			wrefresh(this->curwin);
@@ -169,7 +184,18 @@ int  player::get_mv()
 
 void player::display()
 {
+	int i = 0;
+
 	nodelay(curwin, true);
+	while(i < 1000)
+	{
+		if(p_bull[i].get_active() == 1)
+		{
+			p_bull[i].p_bull_mv();
+		}
+		p_bull[i].display();
+		i++;
+	}
 	mvwaddch(curwin, y_l, x_l + 3, '_');
 	mvwaddch(curwin, y_l, x_l + 4, '_');
 
@@ -193,6 +219,7 @@ void player::display()
 	mvwaddch(curwin, y_l + 3, x_l + 3, '/');
 	mvwaddch(curwin, y_l + 3, x_l + 4, '_');
 	mvwaddch(curwin, y_l + 3, x_l + 5, '/');
+
 }
 
 
