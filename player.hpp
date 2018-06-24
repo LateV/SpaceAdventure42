@@ -1,8 +1,7 @@
 #ifndef PLAYER_HPP
 #define PLAYER_HPP
 
-#include <ncurses.h>
-#include <iostream>
+#include "space_fantasy.h"
 #include "bullet.hpp"
 
 class player {

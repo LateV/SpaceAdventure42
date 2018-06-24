@@ -6,7 +6,7 @@
 /*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 11:11:00 by lburlach          #+#    #+#             */
-/*   Updated: 2018/06/24 20:52:41 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/06/24 21:58:26 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void Foe::display() {
 		p_bull[i].display();
 		i++;
 	}
+	this->checkCollisionForPl();
 	srand(clock());
 	nodelay(this->getPtrOnWin()->getWinPtr(), true);
 	mvwprintw(this->getPtrOnWin()->getWinPtr(), this->getYPop() + 1,
@@ -190,10 +191,31 @@ int Foe::checkCollisionWithBullet() {
 		x_b = buls[i].get_x_b();
 		for (int j = 0; j < 6; j++) {
 			pos_of_foe = this->getYPop() + j;
-			if (abs(pos_of_foe - y_b) < 2 && abs(x_b - this->getXPop()) < 2) {
+			if (abs(pos_of_foe - y_b) < 4 && abs(x_b - this->getXPop()) < 2) {
 				return (1);
 			}
 		}
 	}
 	return (0);
+}
+
+void Foe::checkCollisionForPl() {
+	int pos_of_pl;
+	int y_b;
+	int x_b;
+
+	for (int i = 0; i < 10; i++)
+	{
+		if (this->p_bull[i].get_active())
+		{
+			y_b = this->p_bull[i].get_y_b();
+			x_b = this->p_bull[i].get_x_b();
+			for (int j = 0; j < 4; j++) {
+				pos_of_pl = this->_pl->get_y_l() + j;
+				if (abs(pos_of_pl - y_b) < 4 && abs(x_b - this->_pl->get_x_l()) < 2) {
+					this->getPtrOnWin()->setHp(this->getPtrOnWin()->getHp() - 50);
+				}
+			}
+		}
+	}
 }

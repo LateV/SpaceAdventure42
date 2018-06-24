@@ -1,10 +1,8 @@
 #ifndef BULLET_HPP
 #define BULLET_HPP
 
-#include <ncurses.h>
-#include <locale>
-#include <string>
-#include <iostream>
+#include "space_fantasy.h"
+
 #define GRASS_PAIR     1
 #define EMPTY_PAIR     1
 #define WATER_PAIR     2

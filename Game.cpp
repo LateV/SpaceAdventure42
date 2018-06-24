@@ -10,9 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fstream>
 #include "Game.h"
-#include "Foe.h"
 
 Game::Game(void) : _win(NULL) {
 	return;
