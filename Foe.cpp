@@ -6,7 +6,7 @@
 /*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 11:11:00 by lburlach          #+#    #+#             */
-/*   Updated: 2018/06/24 22:09:28 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/06/24 22:39:48 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,9 @@ void Foe::display() {
 		mvwprintw(this->getPtrOnWin()->getWinPtr(), this->getPtrOnWin()->getYMax()/2,
 				  this->getPtrOnWin()->getXMax()/2, "VICTORY!! GJ!\n");
 		wrefresh(this->getPtrOnWin()->getWinPtr());
+		delay_output(1000);
+		delwin(this->getPtrOnWin()->getWinPtr());
+		endwin();
 		exit(0);
 	}
 	if(this->getPtrOnWin()->getHp() < 0)
@@ -120,6 +123,9 @@ void Foe::display() {
 		mvwprintw(this->getPtrOnWin()->getWinPtr(), this->getPtrOnWin()->getYMax()/2,
 				  this->getPtrOnWin()->getXMax()/2, "GAME OVER !\n");
 		wrefresh(this->getPtrOnWin()->getWinPtr());
+		delay_output(1000);
+		delwin(this->getPtrOnWin()->getWinPtr());
+		endwin();
 		exit(0);
 	}
 	if (!this->_dead) {

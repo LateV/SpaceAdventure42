@@ -100,7 +100,7 @@ void bullet::display(void)
 	if(active == 1 && x_b > 1 && who == 1)
 	{
 		attron(COLOR_PAIR(2));
-		mvwaddch(curwin, y_b, x_b , '+');
+		mvwaddch(curwin, y_b, x_b , '<');
 		mvwaddch(curwin, y_b, x_b + 2, ' ');
 	}
 }
