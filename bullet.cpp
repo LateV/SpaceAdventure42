@@ -37,6 +37,10 @@ int bullet::get_active(void) const
 {
 	return(this->active);
 }
+void bullet::set_x_b(void)
+{
+	this->x_b = this->max_x;
+}
 
 
 bullet &bullet::operator=(const bullet &op)
@@ -86,13 +90,16 @@ void bullet::e_bull_mv()
 
 void bullet::display(void)
 {
+
+
 	if(active == 1 && x_b < max_x - 1 && who == 0)
-	{		
+	{
 		mvwaddch(curwin, y_b, x_b - 1, ' ');
 		mvwaddch(curwin, y_b, x_b , 'o');
 	}
 	if(active == 1 && x_b > 1 && who == 1)
 	{
+		attron(COLOR_PAIR(2));
 		mvwaddch(curwin, y_b, x_b , '+');
 		mvwaddch(curwin, y_b, x_b + 2, ' ');
 	}

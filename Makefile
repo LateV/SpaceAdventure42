@@ -6,6 +6,7 @@ SRC =	main.cpp         		\
 		Window.cpp 				\
 		bullet.cpp 				\
 		Foe.cpp 				\
+		Score.cpp 				\
 
 
 OBJ = $(SRC:.cpp=.o)
