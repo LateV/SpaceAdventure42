@@ -6,7 +6,7 @@
 /*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 13:35:00 by lburlach          #+#    #+#             */
-/*   Updated: 2018/06/23 17:12:34 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/06/24 20:18:40 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,17 @@ public:
 	void introduct(void);
 	int startButton(void);
 	void clearWindow(void);
+	int getScore(void) const;
+	void setScore(int par);
+	int getHp(void) const;
+	void setHp(int hp);
 
 private:
 	int _xMax;
 	int _yMax;
 	bool _err;
+	int _score;
+	int _hp;
 	WINDOW * _winPtr;
 };
 

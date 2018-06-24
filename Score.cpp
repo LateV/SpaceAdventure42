@@ -6,7 +6,7 @@
 /*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 19:20:00 by lburlach          #+#    #+#             */
-/*   Updated: 2018/06/24 19:42:25 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/06/24 19:42:56 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,6 @@ int Score::getYSc() const {
 }
 
 void Score::display() {
-	mvwprintw(this->getScWin(), 1, 1, "%d %d", this->getPtrOnWin()->getYMax(), this->getPtrOnWin()->getYMax());
+	mvwprintw(this->getScWin(), 1, 1, "Score :%d", this->getPtrOnWin()->getScore());
+	mvwprintw(this->getScWin(), 2, 1, "HP :%d", this->getPtrOnWin()->getHp());
 }
