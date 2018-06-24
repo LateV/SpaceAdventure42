@@ -6,7 +6,7 @@
 /*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 13:35:00 by lburlach          #+#    #+#             */
-/*   Updated: 2018/06/23 21:18:58 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/06/24 20:23:29 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ Window::Window(void) {
 	cbreak();
 	getmaxyx(stdscr, this->_yMax, this->_xMax);
 	this->_err = false;
+	this->_hp = 10000;
+	this->_score = 0;
 /*	std::stringstream tmp;
 	tmp<<this->getYMax()<<" "<<this->getXMax();
 	printw(tmp.str().c_str());
@@ -80,6 +82,8 @@ Window &Window::operator=(Window const &rhs) {
 		this->_winPtr = rhs.getWinPtr();
 		this->_yMax = rhs.getYMax();
 		this->_xMax = rhs.getXMax();
+		this->_score = rhs.getScore();
+		this->_hp = rhs.getHp();
 	}
 	return *this;
 }
@@ -96,9 +100,26 @@ int Window::getYMax() const {
 WINDOW* Window::getWinPtr() const {
 	return this->_winPtr;
 }
+
+int Window::getScore() const {
+	return this->_score;
+}
+
+int Window::getHp() const {
+	return this->_hp;
+}
+
 //setters:
 void Window::setXMax(int par) {
 	this->_xMax = par;
+}
+
+void Window::setScore(int par) {
+	this->_score = par;
+}
+
+void Window::setHp(int par) {
+	this->_hp =par;
 }
 
 void Window::setYMax(int par) {
@@ -192,3 +213,4 @@ void Window::clearWindow() {
 	box(this->getWinPtr(), 0, 0);
 	wrefresh(this->getWinPtr());
 }
+

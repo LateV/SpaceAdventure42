@@ -23,17 +23,18 @@ public:
 	Foe(Foe const &src);
 	~Foe(void);
 	Foe &operator=(Foe const &rhs);
-	const Window * getPtrOnWin(void) const;
+	Window * getPtrOnWin(void) const;
 	int getXPop(void) const;
 	int getYPop(void) const;
 	void display(void);
-	void setWinPtr(const Window * pt, player * pl);
+	void setWinPtr(Window * pt, player * pl);
 	void setDead(bool mean);
 	int checkCollision(void);
+	int checkCollisionWithBullet(void);
 private:
 	int curr_shot;
 	static const bool _body[6][4];
-	const Window * _curwin;
+ Window * _curwin;
 	bullet *p_bull;
 	int _xPop;
 	int _yPop;

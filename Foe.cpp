@@ -6,7 +6,7 @@
 /*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 11:11:00 by lburlach          #+#    #+#             */
-/*   Updated: 2018/06/24 17:48:01 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/06/24 20:52:41 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ Foe &Foe::operator=(Foe const &rhs) {
 }
 //setters:
 
-void Foe::setWinPtr(const Window *ptr, player * pl) 
+void Foe::setWinPtr(Window *ptr, player * pl)
 {
 	srand(clock());
 	int i = 0;
@@ -55,7 +55,7 @@ void Foe::setWinPtr(const Window *ptr, player * pl)
 	}
 }
 //getters:
-const Window* Foe::getPtrOnWin() const {
+Window* Foe::getPtrOnWin() const {
 	return this->_curwin;
 }
 
@@ -105,8 +105,16 @@ void Foe::display() {
 			  this->getXPop(), "     ");
 	mvwprintw(this->getPtrOnWin()->getWinPtr(), this->getYPop() - 6,
 			  this->getXPop(), "     ");
-
 	if (!this->_dead) {
+		if (this->checkCollisionWithBullet()) {
+			this->getPtrOnWin()->setScore(this->getPtrOnWin()->getScore() + 10);
+			this->_dead = true;
+		}
+		if (this->checkCollision())
+		{
+			this->getPtrOnWin()->setHp(this->getPtrOnWin()->getHp() - 50);
+//			exit(0);
+		}
 		mvwprintw(this->getPtrOnWin()->getWinPtr(), this->getYPop(),
 				  this->getXPop(), "  \\\\");
 		mvwprintw(this->getPtrOnWin()->getWinPtr(), this->getYPop() - 1,
@@ -140,8 +148,6 @@ void Foe::display() {
 			this->_yPop <= 6 || this->_xPop <= 1)
 			this->_dead = true;
 	}
-//	if (this->checkCollision())
-//		exit(1);
 }
 
 void Foe::setDead(bool mean) {
@@ -152,21 +158,41 @@ int Foe::checkCollision(void) {
 	int pos_of_foe;
 	int pos_of_pl;
 	int count;
-	int y_p = this->_pl->get_x_l();
-	int x_p  = this->_pl->get_y_l();
+	int y_p = this->_pl->get_y_l();
+	int x_p  = this->_pl->get_x_l();
 	int y_f = this->getYPop();
 	int x_f = this->getXPop();
-	mvwprintw(this->getPtrOnWin()->getWinPtr(), 10, 10, "work, ok");
+//	mvwprintw(this->getPtrOnWin()->getWinPtr(), 10, 10, "pl = %d foe = %d", y_p, y_f);
 	wrefresh(this->getPtrOnWin()->getWinPtr());
 	for (int i = 0; i < 6; i++) {
 		pos_of_foe = y_f + i;
 		pos_of_pl = y_p;
 		count = 0;
 		while (count < 4) {
-			if (pos_of_foe == pos_of_pl && x_f == x_p)
+			if (abs(pos_of_foe - pos_of_pl) < 5 && abs(x_f - x_p) < 4)
 				return (1);
 			pos_of_pl++;
 			count++;
+		}
+	}
+	return (0);
+}
+
+int Foe::checkCollisionWithBullet() {
+	int pos_of_foe;
+	int y_b;
+	int x_b;
+	bullet * buls = this->_pl->get_p_bull();
+
+	for (int i = 0; i < 1000; i++)
+	{
+		y_b = buls[i].get_y_b();
+		x_b = buls[i].get_x_b();
+		for (int j = 0; j < 6; j++) {
+			pos_of_foe = this->getYPop() + j;
+			if (abs(pos_of_foe - y_b) < 2 && abs(x_b - this->getXPop()) < 2) {
+				return (1);
+			}
 		}
 	}
 	return (0);
