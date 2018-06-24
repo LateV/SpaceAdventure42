@@ -8,15 +8,15 @@
 
 class bullet{
 public:
-	bullet(WINDOW * win, int y, int x);
+	bullet(WINDOW * win);
 	bullet();
 	~bullet();
 	void p_bull_mv(void);
 	void e_bull_mv(void);
 	void display(void);
 	int get_active(void);
-	void shot(WINDOW * win, int x, int y);
-	void init_bull(WINDOW * win, int y, int x);
+	void shot(int x, int y);
+	void init_bull(WINDOW * win);
 private:
 	WINDOW * curwin;
 	int active;

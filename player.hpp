@@ -2,8 +2,6 @@
 #define PLAYER_HPP
 
 #include <ncurses.h>
-#include <locale>
-#include <string>
 #include <iostream>
 #include "bullet.hpp"
 
@@ -23,15 +21,8 @@ private:
 	WINDOW * curwin;
 	int x_l;
 	int y_l;
-<<<<<<< HEAD
 	int max_y; //max size of win.
-	int max_x; //
-	int min_y;
-	int min_x;
-=======
-	int max_y;
 	int max_x;
->>>>>>> origin/vibondar
 	int body [4][10];
 };
 
