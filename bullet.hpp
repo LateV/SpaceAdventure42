@@ -12,8 +12,10 @@ public:
 	~bullet();
 	void p_bull_mv();
 	void e_bull_mv();
+	void display(void);
 	void shot(int x, int y);
 private:
+	WINDOW * curwin;
 	int active;
 	int x_b;
 	int y_b;

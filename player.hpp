@@ -18,7 +18,6 @@ public:
 	void display(void);
 	int get_mv(void);
 private:
-	char ch;
 	WINDOW * curwin;
 	int x_l;
 	int y_l;
