@@ -1,8 +1,9 @@
 #include "bullet.hpp"
 
 bullet::bullet(){}
-bullet::bullet(WINDOW * win)
+bullet::bullet(WINDOW * win, int who)
 {
+	this->who = who;
 	active = 0;
 	x_b = 0;
 	y_b = 0;
@@ -48,8 +49,9 @@ bullet &bullet::operator=(const bullet &op)
 	return(*this);
 }
 
-void bullet::init_bull(WINDOW * win)
+void bullet::init_bull(WINDOW * win, int who)
 {
+	this->who = who;
 	active = 0;
 	x_b = 0;
 	y_b = 0;
@@ -77,15 +79,21 @@ void bullet::p_bull_mv()
 void bullet::e_bull_mv()
 {
 	x_b--;
+	x_b--;
 	if(x_b < 0)
 		active = 0;
 }
 
 void bullet::display(void)
 {
-	if(active == 1 && x_b < max_x - 1)
-	{
+	if(active == 1 && x_b < max_x - 1 && who == 0)
+	{		
 		mvwaddch(curwin, y_b, x_b - 1, ' ');
 		mvwaddch(curwin, y_b, x_b , 'o');
+	}
+	if(active == 1 && x_b > 1 && who == 1)
+	{
+		mvwaddch(curwin, y_b, x_b , '+');
+		mvwaddch(curwin, y_b, x_b + 2, ' ');
 	}
 }
