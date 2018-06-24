@@ -6,7 +6,7 @@
 /*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 16:29:00 by lburlach          #+#    #+#             */
-/*   Updated: 2018/06/24 19:09:21 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/06/24 20:45:33 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ Game::Game(void) : _win(NULL) {
 	return;
 }
 
-Game::Game(const Window *win) : _win(win) {
+Game::Game(Window *win) : _win(win) {
 	this->_map_iter = 0;
 	return ;
 }
@@ -41,7 +41,7 @@ Game &Game::operator=(Game const &rhs) {
 	return *this;
 }
 
-const Window* Game::getPtrOnWin() const {
+Window* Game::getPtrOnWin() const {
 	return this->_win;
 }
 
@@ -103,7 +103,7 @@ void Game::background2() {
 		this->_tmp = new char[BG_SIZE];
 		this->_indeces = new int[this->getPtrOnWin()->getYMax()];
 		for (int i = 0; i < BG_SIZE - 2; i++) {
-			if (rand() % 100 < 4) //randomising our spray string.
+			if (rand() % 100 < 2) //randomising our spray string.
 				this->_tmp[i] = '*';
 			else
 				this->_tmp[i] = ' ';

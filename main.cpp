@@ -47,7 +47,7 @@ int 	main(void)
 		sc->display();
 		box(sc->getScWin(), 0, 0);
 		wrefresh(sc->getScWin());
-		delay_output(50);
+		delay_output(30);
 		noecho();
 		nodelay(init_win->getWinPtr(), true);
 		nodelay(sc->getScWin(), true);

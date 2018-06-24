@@ -6,7 +6,7 @@
 /*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 11:11:00 by lburlach          #+#    #+#             */
-/*   Updated: 2018/06/24 18:34:39 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/06/24 20:52:41 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,10 @@ Foe &Foe::operator=(Foe const &rhs) {
 }
 //setters:
 
-void Foe::setWinPtr(const Window *ptr, player * pl) {
+void Foe::setWinPtr(Window *ptr, player * pl)
+{
 	srand(clock());
+	int i = 0;
 	this->_yPop = 0;
 	this->_curwin = ptr;
 //	while ((this->_yPop < 7) || (this->_yPop > this->getPtrOnWin()->getYMax() - 7))
@@ -45,9 +47,15 @@ void Foe::setWinPtr(const Window *ptr, player * pl) {
 	this->_xPop = this->getPtrOnWin()->getXMax() - 6;
 	this->_dead = true;
 	this->_pl = pl;
+	this->p_bull = new bullet[10];
+	while(i < 10)
+	{
+		p_bull[i].init_bull(ptr->getWinPtr(), 1);
+		i++;
+	}
 }
 //getters:
-const Window* Foe::getPtrOnWin() const {
+Window* Foe::getPtrOnWin() const {
 	return this->_curwin;
 }
 
@@ -69,6 +77,16 @@ const bool Foe::_body[6][4] = {
 };
 
 void Foe::display() {
+	int i = 0;
+	while(i < 10)
+	{
+		if(p_bull[i].get_active() == 1)
+		{
+			p_bull[i].e_bull_mv();
+		}
+		p_bull[i].display();
+		i++;
+	}
 	srand(clock());
 	nodelay(this->getPtrOnWin()->getWinPtr(), true);
 	mvwprintw(this->getPtrOnWin()->getWinPtr(), this->getYPop() + 1,
@@ -87,11 +105,16 @@ void Foe::display() {
 			  this->getXPop(), "     ");
 	mvwprintw(this->getPtrOnWin()->getWinPtr(), this->getYPop() - 6,
 			  this->getXPop(), "     ");
-	if (this->checkCollisionWithBullet())
-		this->_dead= true;
 	if (!this->_dead) {
+		if (this->checkCollisionWithBullet()) {
+			this->getPtrOnWin()->setScore(this->getPtrOnWin()->getScore() + 10);
+			this->_dead = true;
+		}
 		if (this->checkCollision())
-			exit(0);
+		{
+			this->getPtrOnWin()->setHp(this->getPtrOnWin()->getHp() - 50);
+//			exit(0);
+		}
 		mvwprintw(this->getPtrOnWin()->getWinPtr(), this->getYPop(),
 				  this->getXPop(), "  \\\\");
 		mvwprintw(this->getPtrOnWin()->getWinPtr(), this->getYPop() - 1,
@@ -105,6 +128,18 @@ void Foe::display() {
 		mvwprintw(this->getPtrOnWin()->getWinPtr(), this->getYPop() - 5,
 				  this->getXPop(), "  //");
 		if (rand() % 100 < 39) {
+
+			if(curr_shot < 10 && rand() % 100 < 39) 
+			{
+				if(rand() % 100 < 39)
+				{
+					if(rand() % 100 < 39)
+					{
+						p_bull[curr_shot].shot(_xPop, _yPop);
+						curr_shot++;
+					}
+				}
+			}
 			this->_yPop = rand() % 100 > 49 ? this->_yPop + 1 : this->_yPop - 1;
 		}
 		else
@@ -155,8 +190,9 @@ int Foe::checkCollisionWithBullet() {
 		x_b = buls[i].get_x_b();
 		for (int j = 0; j < 6; j++) {
 			pos_of_foe = this->getYPop() + j;
-			if (abs(pos_of_foe - y_b) < 2 && abs(x_b - this->getXPop()) < 2)
+			if (abs(pos_of_foe - y_b) < 2 && abs(x_b - this->getXPop()) < 2) {
 				return (1);
+			}
 		}
 	}
 	return (0);
