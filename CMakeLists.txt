@@ -7,7 +7,7 @@ set(CURSES_NEED_NCURSES TRUE)
 find_package(Curses REQUIRED)
 if (CURSES_FOUND AND CURSES_HAVE_NCURSES_H)
     include_directories(${CURSES_INCLUDE_DIR})
-    add_executable(space_fantasy main.cpp main.cpp Window.cpp Window.h space_fantasy.h Game.cpp Game.h player.cpp player.hpp)
+    add_executable(space_fantasy main.cpp main.cpp Window.cpp Window.h space_fantasy.h Game.cpp Game.h player.cpp player.hpp Foe.cpp Foe.h)
     target_link_libraries (space_fantasy ${CURSES_LIBRARIES})
 endif()
 

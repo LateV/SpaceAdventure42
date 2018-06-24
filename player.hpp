@@ -20,8 +20,8 @@ private:
 	WINDOW * curwin;
 	int x_l;
 	int y_l;
-	int max_y;
-	int max_x;
+	int max_y; //max size of win.
+	int max_x; //
 	int min_y;
 	int min_x;
 	int body [4][10];
