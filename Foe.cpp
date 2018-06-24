@@ -6,7 +6,7 @@
 /*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 11:11:00 by lburlach          #+#    #+#             */
-/*   Updated: 2018/06/24 17:41:09 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/06/24 17:48:01 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,8 +110,8 @@ void Foe::display() {
 			this->_yPop <= 6 || this->_xPop <= 1)
 			this->_dead = true;
 	}
-	if (this->checkCollision())
-		exit(1);
+//	if (this->checkCollision())
+//		exit(1);
 }
 
 void Foe::setDead(bool mean) {
@@ -122,8 +122,8 @@ int Foe::checkCollision(void) {
 	int pos_of_foe;
 	int pos_of_pl;
 	int count;
-	int y_p = this->_pl->getYL();
-	int x_p  = this->_pl->getXL();
+	int y_p = this->_pl->get_x_l();
+	int x_p  = this->_pl->get_y_l();
 	int y_f = this->getYPop();
 	int x_f = this->getXPop();
 	mvwprintw(this->getPtrOnWin()->getWinPtr(), 10, 10, "work, ok");
