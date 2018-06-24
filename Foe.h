@@ -30,6 +30,7 @@ public:
 	void setWinPtr(const Window * pt, player * pl);
 	void setDead(bool mean);
 	int checkCollision(void);
+	int checkCollisionWithBullet(void);
 private:
 	static const bool _body[6][4];
 	const Window * _curwin;

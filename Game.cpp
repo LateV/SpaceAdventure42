@@ -152,13 +152,13 @@ void Game::create_foes(int N, player * hm) {
 	this->_N = N;
 	this->_foesIt = 20;
 	this->_Foes = new Foe[N];
+	this->_pl = hm;
 	for (int i = 0; i < N; i++) {
 		this->_Foes[i].setWinPtr(this->getPtrOnWin(), this->_pl);
 		if (rand() % 100 < POPPINGUP) {
 			this->_Foes[i].setDead(false);
 		}
 	}
-	this->_pl = hm;
 }
 
 void Game::display_foes() {
