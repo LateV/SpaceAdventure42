@@ -107,13 +107,29 @@ void Foe::display() {
 			  this->getXPop(), "     ");
 	if (!this->_dead) {
 		if (this->checkCollisionWithBullet()) {
+
 			this->getPtrOnWin()->setScore(this->getPtrOnWin()->getScore() + 10);
+			if(this->getPtrOnWin()->getScore() > 300)
+			{
+				wclear(this->getPtrOnWin()->getWinPtr());
+				mvwprintw(this->getPtrOnWin()->getWinPtr(), this->getPtrOnWin()->getYMax()/2,
+				  this->getPtrOnWin()->getXMax()/2, "VICTORY!! GJ!\n");
+				wrefresh(this->getPtrOnWin()->getWinPtr());
+				exit(0);
+			}
 			this->_dead = true;
 		}
 		if (this->checkCollision())
 		{
 			this->getPtrOnWin()->setHp(this->getPtrOnWin()->getHp() - 50);
-//			exit(0);
+			if(this->getPtrOnWin()->getHp() < 0)
+			{
+				wclear(this->getPtrOnWin()->getWinPtr());
+				mvwprintw(this->getPtrOnWin()->getWinPtr(), this->getPtrOnWin()->getYMax()/2,
+				  this->getPtrOnWin()->getXMax()/2, "GAME OVER !\n");
+				wrefresh(this->getPtrOnWin()->getWinPtr());
+				exit(0);
+			}
 		}
 		mvwprintw(this->getPtrOnWin()->getWinPtr(), this->getYPop(),
 				  this->getXPop(), "  \\\\");
@@ -191,6 +207,7 @@ int Foe::checkCollisionWithBullet() {
 		for (int j = 0; j < 6; j++) {
 			pos_of_foe = this->getYPop() + j;
 			if (abs(pos_of_foe - y_b) < 2 && abs(x_b - this->getXPop()) < 2) {
+				buls[i].set_x_b();
 				return (1);
 			}
 		}

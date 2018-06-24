@@ -5,11 +5,7 @@
 #include <locale>
 #include <string>
 #include <iostream>
-#define GRASS_PAIR     1
-#define EMPTY_PAIR     1
-#define WATER_PAIR     2
-#define MOUNTAIN_PAIR  3
-#define PLAYER_PAIR    4
+
 
 class bullet{
 public:
@@ -24,6 +20,7 @@ public:
 	int get_y_b(void) const;
 	int get_max_x(void) const;
 	int get_max_y(void) const;
+	void set_x_b(void);
 
 	void p_bull_mv(void);
 	void e_bull_mv(void);
