@@ -1,6 +1,11 @@
 #include "player.hpp"
 
-
+const bool player::body[4][10] = {
+		{false, false, false, true, true, false, false, false, false, false},
+		{false, false, false, true, false, true, true, true, true, false},
+		{true, true, true, true, true, true, true, true, true, true},
+		{false, false, false, true, true, true, false, false, false, false}
+};
 player::player(WINDOW * win,int y, int x)
 {
 	curr_shot = 0;
@@ -15,50 +20,6 @@ player::player(WINDOW * win,int y, int x)
 		p_bull[i].init_bull(curwin);
 		i++;
 	}
-	body[0][0] = 0;
-	body[0][1] = 0;
-	body[0][2] = 0;
-	body[0][3] = 1;
-	body[0][4] = 1;
-	body[0][5] = 0;
-	body[0][6] = 0;
-	body[0][7] = 0;
-	body[0][8] = 0;
-	body[0][9] = 0;
-
-	body[1][0] = 0;
-	body[1][1] = 0;
-	body[1][2] = 0;
-	body[1][3] = 1;
-	body[1][4] = 0;
-	body[1][5] = 1;
-	body[1][6] = 1;
-	body[1][7] = 1;
-	body[1][8] = 1;
-	body[1][9] = 0;
-	
-	body[2][0] = 1;
-	body[2][1] = 1;
-	body[2][2] = 1;
-	body[2][3] = 1;
-	body[2][4] = 1;
-	body[2][5] = 1;
-	body[2][6] = 1;
-	body[2][7] = 1;
-	body[2][8] = 1;
-	body[2][9] = 1;
-
-	body[3][0] = 0;
-	body[3][1] = 0;
-	body[3][2] = 0;
-	body[3][3] = 1;
-	body[3][4] = 1;
-	body[3][5] = 1;
-	body[3][6] = 0;
-	body[3][7] = 0;
-	body[3][8] = 0;
-	body[3][9] = 0;
-
 	getmaxyx(this->curwin, this->max_y, this->max_x);
 	keypad(this->curwin, true);
 }
@@ -222,4 +183,10 @@ void player::display()
 
 }
 
+int player::getXL() {
+	return this->x_l;
+}
 
+int player::getYL() {
+	return this->y_l;
+}

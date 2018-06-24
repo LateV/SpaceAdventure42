@@ -15,6 +15,9 @@ public:
 	void mvright(void);
 	void display(void);
 	int get_mv(void);
+	int getXL(void);
+	int getYL(void);
+	static const bool body [4][10];
 private:
 	int curr_shot;
 	bullet *p_bull;
@@ -23,7 +26,6 @@ private:
 	int y_l;
 	int max_y; //max size of win.
 	int max_x;
-	int body [4][10];
 };
 
 #endif

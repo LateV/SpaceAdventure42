@@ -6,7 +6,7 @@
 /*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 16:29:00 by lburlach          #+#    #+#             */
-/*   Updated: 2018/06/24 14:19:24 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/06/24 17:29:02 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,16 +148,17 @@ void Game::background2() {
 #define FREQUENCE 30
 #define NUM_OF_NEW_SHIPS 20
 
-void Game::create_foes(int N) {
+void Game::create_foes(int N, player * hm) {
 	this->_N = N;
 	this->_foesIt = 20;
 	this->_Foes = new Foe[N];
 	for (int i = 0; i < N; i++) {
-		this->_Foes[i].setWinPtr(this->getPtrOnWin());
+		this->_Foes[i].setWinPtr(this->getPtrOnWin(), this->_pl);
 		if (rand() % 100 < POPPINGUP) {
 			this->_Foes[i].setDead(false);
 		}
 	}
+	this->_pl = hm;
 }
 
 void Game::display_foes() {

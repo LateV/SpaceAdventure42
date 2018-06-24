@@ -6,7 +6,7 @@
 /*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 11:11:00 by lburlach          #+#    #+#             */
-/*   Updated: 2018/06/24 12:38:01 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/06/24 17:24:44 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include "space_fantasy.h"
 #include "Window.h"
+#include "player.hpp"
 
 class Foe {
 public:
@@ -26,14 +27,17 @@ public:
 	int getXPop(void) const;
 	int getYPop(void) const;
 	void display(void);
-	void setWinPtr(const Window * ptr);
+	void setWinPtr(const Window * pt, player * pl);
 	void setDead(bool mean);
+	int checkCollision(void);
 private:
 	static const bool _body[6][4];
 	const Window * _curwin;
 	int _xPop;
 	int _yPop;
 	bool _dead;
+	player * _pl;
 };
 
 #endif //D04_FOE_H
+
