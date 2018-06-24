@@ -5,7 +5,6 @@
 #include <locale>
 #include <string>
 #include <iostream>
-#include "bullet.hpp"
 
 class player {
 public:

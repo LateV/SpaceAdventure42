@@ -2,7 +2,7 @@
 
 player::player(WINDOW * win,int y, int x)
 {
-	curwin = win;
+	this->curwin = win;
 	x_l = x;
 	y_l = y;
 
@@ -50,8 +50,8 @@ player::player(WINDOW * win,int y, int x)
 	body[3][8] = 0;
 	body[3][9] = 0;
 
-	getmaxyx(curwin, max_y, max_x);
-	keypad(curwin, true);
+	getmaxyx(this->curwin, this->max_y, this->max_x);
+	keypad(this->curwin, true);
 }
 
 player::~player()
@@ -140,29 +140,36 @@ void player::mvright()
 
 int  player::get_mv()
 {
+	nodelay(this->curwin, true);
 	int mv = wgetch(curwin);
 	switch(mv)
 	{
+		case 27:
+			wclear(this->curwin);
+			wrefresh(this->curwin);
+			exit(0);
+			break;
 		case KEY_UP:
-		mvup();
-		break;
+			mvup();
+			break;
 		case KEY_LEFT:
-		mvleft();
-		break;
+			mvleft();
+			break;
 		case KEY_DOWN:
-		mvdown();
-		break;
+			mvdown();
+			break;
 		case KEY_RIGHT:
-		mvright();
-		break;
+			mvright();
+			break;
 		default:
-		break;
+			break;
 	}
 	return(mv);
 }
 
 void player::display()
 {
+	nodelay(curwin, true);
 	mvwaddch(curwin, y_l, x_l + 3, '_');
 	mvwaddch(curwin, y_l, x_l + 4, '_');
 
