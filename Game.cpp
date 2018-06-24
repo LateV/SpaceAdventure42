@@ -6,12 +6,13 @@
 /*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 16:29:00 by lburlach          #+#    #+#             */
-/*   Updated: 2018/06/23 22:12:41 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/06/24 14:19:24 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fstream>
 #include "Game.h"
+#include "Foe.h"
 
 Game::Game(void) : _win(NULL) {
 	return;
@@ -25,6 +26,7 @@ Game::Game(const Window *win) : _win(win) {
 Game::~Game(void) {
 	delete this->_indeces;
 	delete this->_tmp;
+	delete [] this->_Foes;
 	return;
 }
 
@@ -140,4 +142,40 @@ void Game::background2() {
 	mvwprintw(this->getPtrOnWin()->getWinPtr(), 20, this->getPtrOnWin()->getXMax() - 70, "     `.          888PP'    ,'");
 	mvwprintw(this->getPtrOnWin()->getWinPtr(), 21, this->getPtrOnWin()->getXMax() - 70, "       `-.      d8P'    ,-'   ");
 	mvwprintw(this->getPtrOnWin()->getWinPtr(), 22, this->getPtrOnWin()->getXMax() - 70, "          `-.,,_'__,,.-'");
+}
+
+#define POPPINGUP 6
+#define FREQUENCE 30
+#define NUM_OF_NEW_SHIPS 20
+
+void Game::create_foes(int N) {
+	this->_N = N;
+	this->_foesIt = 20;
+	this->_Foes = new Foe[N];
+	for (int i = 0; i < N; i++) {
+		this->_Foes[i].setWinPtr(this->getPtrOnWin());
+		if (rand() % 100 < POPPINGUP) {
+			this->_Foes[i].setDead(false);
+		}
+	}
+}
+
+void Game::display_foes() {
+	static int flag;
+	if (flag == FREQUENCE) {
+		this->_foesIt += NUM_OF_NEW_SHIPS;
+		flag = 0;
+	}
+	if (this->_foesIt >= this->_N) {
+		for (int i = 0; i < this->_N; i++) {
+			this->_Foes[i].display();
+		}
+	}
+	else
+	{
+		for (int i = 0; i < this->_foesIt; i++) {
+			this->_Foes[i].display();
+		}
+	}
+	flag++;
 }
