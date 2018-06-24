@@ -5,7 +5,7 @@ bullet::bullet()
 
 }
 
-bullet::bullet(WINDOW * win, int y, int x)
+bullet::bullet(WINDOW * win)
 {
 	active = 0;
 	x_b = 0;
@@ -18,7 +18,7 @@ bullet::~bullet()
 
 }
 
-void bullet::init_bull(WINDOW * win, int y, int x)
+void bullet::init_bull(WINDOW * win)
 {
 	active = 0;
 	x_b = 0;
@@ -32,7 +32,7 @@ int bullet::get_active(void)
 	return(this->active);
 }
 
-void bullet::shot(WINDOW * win, int x, int y)
+void bullet::shot(int x, int y)
 {
 	active = 1;
 	x_b = x;

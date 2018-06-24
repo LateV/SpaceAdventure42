@@ -12,7 +12,7 @@ player::player(WINDOW * win,int y, int x)
 
 	while(i < 1000)
 	{
-		p_bull[i].init_bull(curwin, x, y);
+		p_bull[i].init_bull(curwin);
 		i++;
 	}
 	body[0][0] = 0;
@@ -156,7 +156,7 @@ int  player::get_mv()
 	switch(mv)
 	{
 		case ' ':
-			p_bull[curr_shot].shot(curwin, x_l + 9, y_l + 2);
+			p_bull[curr_shot].shot(x_l + 9, y_l + 2);
 			curr_shot++;
 			break;
 		case 27:

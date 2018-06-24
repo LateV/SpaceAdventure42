@@ -1,44 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Game.h                                             :+:      :+:    :+:   */
+/*   Foe.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/23 16:29:00 by lburlach          #+#    #+#             */
-/*   Updated: 2018/06/24 12:03:11 by lburlach         ###   ########.fr       */
+/*   Created: 2018/06/24 11:11:00 by lburlach          #+#    #+#             */
+/*   Updated: 2018/06/24 12:38:01 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef D04_GAME_H
-#define D04_GAME_H
+#ifndef D04_FOE_H
+#define D04_FOE_H
 
 #include "space_fantasy.h"
 #include "Window.h"
-#include "Foe.h"
 
-class Game {
+class Foe {
 public:
-	Game(void);
-	Game(const Window* win);
-	Game(Game const &src);
-	~Game(void);
-	Game &operator=(Game const &rhs);
+	Foe(void);
+	Foe(Foe const &src);
+	~Foe(void);
+	Foe &operator=(Foe const &rhs);
 	const Window * getPtrOnWin(void) const;
-	void background(void);
-	void background2(void);
-	void create_foes(int N);
-	void display_foes(void);
-
+	int getXPop(void) const;
+	int getYPop(void) const;
+	void display(void);
+	void setWinPtr(const Window * ptr);
+	void setDead(bool mean);
 private:
-	const Window* _win;
-	int * _indeces;
-	char * _tmp;
-	int _map_iter;
-	Foe * _Foes;
-	int _foesIt;
-	int _N;
+	static const bool _body[6][4];
+	const Window * _curwin;
+	int _xPop;
+	int _yPop;
+	bool _dead;
 };
 
-
-#endif //D04_GAME_H
+#endif //D04_FOE_H
