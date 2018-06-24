@@ -27,6 +27,7 @@ public:
 	void display(void);
 	int get_mv(void);
 	player& operator=(const player& op);
+	static const bool body [4][10];
 private:
 	int curr_shot;
 	bullet *p_bull;

@@ -27,7 +27,7 @@ public:
 	const Window * getPtrOnWin(void) const;
 	void background(void);
 	void background2(void);
-	void create_foes(int N);
+	void create_foes(int N, player * hm);
 	void display_foes(void);
 
 private:
@@ -38,6 +38,7 @@ private:
 	Foe * _Foes;
 	int _foesIt;
 	int _N;
+	player * _pl;
 };
 
 

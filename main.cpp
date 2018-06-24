@@ -6,7 +6,7 @@
 /*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 13:27:00 by lburlach          #+#    #+#             */
-/*   Updated: 2018/06/24 13:57:35 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/06/24 17:24:44 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int 	main(void)
 		return 0;
 	}
 	init_win->clearWindow();
-	game->create_foes(1000);
+	game->create_foes(1000, pl);
 //	wprintw(init_win->getWinPtr(), "ok");
 	wrefresh(init_win->getWinPtr());
 	while (42) {
