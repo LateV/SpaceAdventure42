@@ -14,10 +14,9 @@ player::player(WINDOW * win,int y, int x)
 	x_l = x;
 	y_l = y;
 	p_bull = new bullet[1000];
-
 	while(i < 1000)
 	{
-		p_bull[i].init_bull(curwin);
+		p_bull[i].init_bull(curwin, 0);
 		i++;
 	}
 	getmaxyx(this->curwin, this->max_y, this->max_x);
@@ -168,8 +167,11 @@ int  player::get_mv()
 	switch(mv)
 	{
 		case ' ':
-			p_bull[curr_shot].shot(x_l + 9, y_l + 2);
-			curr_shot++;
+			if(curr_shot < 1000)
+			{
+				p_bull[curr_shot].shot(x_l + 9, y_l + 2);
+				curr_shot++;
+			}
 			break;
 		case 27:
 			wclear(this->curwin);

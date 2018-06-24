@@ -31,8 +31,10 @@ public:
 	void setDead(bool mean);
 	int checkCollision(void);
 private:
+	int curr_shot;
 	static const bool _body[6][4];
 	const Window * _curwin;
+	bullet *p_bull;
 	int _xPop;
 	int _yPop;
 	bool _dead;

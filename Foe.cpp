@@ -35,8 +35,10 @@ Foe &Foe::operator=(Foe const &rhs) {
 }
 //setters:
 
-void Foe::setWinPtr(const Window *ptr, player * pl) {
+void Foe::setWinPtr(const Window *ptr, player * pl) 
+{
 	srand(clock());
+	int i = 0;
 	this->_yPop = 0;
 	this->_curwin = ptr;
 //	while ((this->_yPop < 7) || (this->_yPop > this->getPtrOnWin()->getYMax() - 7))
@@ -45,6 +47,12 @@ void Foe::setWinPtr(const Window *ptr, player * pl) {
 	this->_xPop = this->getPtrOnWin()->getXMax() - 6;
 	this->_dead = true;
 	this->_pl = pl;
+	this->p_bull = new bullet[10];
+	while(i < 10)
+	{
+		p_bull[i].init_bull(ptr->getWinPtr(), 1);
+		i++;
+	}
 }
 //getters:
 const Window* Foe::getPtrOnWin() const {
@@ -69,6 +77,16 @@ const bool Foe::_body[6][4] = {
 };
 
 void Foe::display() {
+	int i = 0;
+	while(i < 10)
+	{
+		if(p_bull[i].get_active() == 1)
+		{
+			p_bull[i].e_bull_mv();
+		}
+		p_bull[i].display();
+		i++;
+	}
 	srand(clock());
 	nodelay(this->getPtrOnWin()->getWinPtr(), true);
 	mvwprintw(this->getPtrOnWin()->getWinPtr(), this->getYPop() + 1,
@@ -102,6 +120,18 @@ void Foe::display() {
 		mvwprintw(this->getPtrOnWin()->getWinPtr(), this->getYPop() - 5,
 				  this->getXPop(), "  //");
 		if (rand() % 100 < 39) {
+
+			if(curr_shot < 10 && rand() % 100 < 39) 
+			{
+				if(rand() % 100 < 39)
+				{
+					if(rand() % 100 < 39)
+					{
+						p_bull[curr_shot].shot(_xPop, _yPop);
+						curr_shot++;
+					}
+				}
+			}
 			this->_yPop = rand() % 100 > 49 ? this->_yPop + 1 : this->_yPop - 1;
 		}
 		else
