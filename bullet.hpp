@@ -6,14 +6,17 @@
 #include <string>
 #include <iostream>
 
-class bullet {
+class bullet{
 public:
 	bullet(WINDOW * win, int y, int x);
+	bullet();
 	~bullet();
-	void p_bull_mv();
-	void e_bull_mv();
+	void p_bull_mv(void);
+	void e_bull_mv(void);
 	void display(void);
-	void shot(int x, int y);
+	int get_active(void);
+	void shot(WINDOW * win, int x, int y);
+	void init_bull(WINDOW * win, int y, int x);
 private:
 	WINDOW * curwin;
 	int active;

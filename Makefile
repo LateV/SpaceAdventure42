@@ -2,6 +2,10 @@ NAME = ft_retro
 
 SRC =	main.cpp         		\
 		player.cpp         		\
+		Game.cpp 				\
+		Window.cpp 				\
+		bullet.cpp 				\
+
 
 OBJ = $(SRC:.cpp=.o)
 
