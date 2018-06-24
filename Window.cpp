@@ -18,7 +18,7 @@ Window::Window(void) {
 	cbreak();
 	getmaxyx(stdscr, this->_yMax, this->_xMax);
 	this->_err = false;
-	this->_hp = 100;
+	this->_hp = 10000;
 	this->_score = 0;
 /*	std::stringstream tmp;
 	tmp<<this->getYMax()<<" "<<this->getXMax();

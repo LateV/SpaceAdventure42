@@ -6,7 +6,7 @@
 /*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 16:29:00 by lburlach          #+#    #+#             */
-/*   Updated: 2018/06/24 12:03:11 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/06/24 20:45:33 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,18 @@
 class Game {
 public:
 	Game(void);
-	Game(const Window* win);
+	Game(Window* win);
 	Game(Game const &src);
 	~Game(void);
 	Game &operator=(Game const &rhs);
-	const Window * getPtrOnWin(void) const;
+ Window * getPtrOnWin(void) const;
 	void background(void);
 	void background2(void);
 	void create_foes(int N, player * hm);
 	void display_foes(void);
 
 private:
-	const Window* _win;
+	 Window* _win;
 	int * _indeces;
 	char * _tmp;
 	int _map_iter;
