@@ -5,6 +5,7 @@ SRC =	main.cpp         		\
 		Game.cpp 				\
 		Window.cpp 				\
 		bullet.cpp 				\
+		Foe.cpp 				\
 
 
 OBJ = $(SRC:.cpp=.o)
