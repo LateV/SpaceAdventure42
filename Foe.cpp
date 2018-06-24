@@ -6,7 +6,7 @@
 /*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 11:11:00 by lburlach          #+#    #+#             */
-/*   Updated: 2018/06/24 18:33:05 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/06/24 18:34:39 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void Foe::display() {
 		this->_dead= true;
 	if (!this->_dead) {
 		if (this->checkCollision())
-			exit(1);
+			exit(0);
 		mvwprintw(this->getPtrOnWin()->getWinPtr(), this->getYPop(),
 				  this->getXPop(), "  \\\\");
 		mvwprintw(this->getPtrOnWin()->getWinPtr(), this->getYPop() - 1,

@@ -6,7 +6,7 @@
 /*   By: lburlach <lburlach@student.unit.ua>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 16:29:00 by lburlach          #+#    #+#             */
-/*   Updated: 2018/06/24 17:29:02 by lburlach         ###   ########.fr       */
+/*   Updated: 2018/06/24 19:09:21 by lburlach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,28 +91,31 @@ const Window* Game::getPtrOnWin() const {
 	mvwprintw(this->getPtrOnWin()->getWinPtr(), 22, this->getPtrOnWin()->getXMax() - 70, "          `-.,,_'__,,.-'");
 }*/
 
+#define BG_SIZE 1000
+
 void Game::background2() {
 	static bool flag = false;
+	std::string tmp;
 //	wprintw(this->getPtrOnWin()->getWinPtr(), "HMMM");
 //	wrefresh(this->getPtrOnWin()->getWinPtr());
 	srand(clock());
 	if (!flag) {
-		this->_tmp = new char[this->getPtrOnWin()->getXMax()];
+		this->_tmp = new char[BG_SIZE];
 		this->_indeces = new int[this->getPtrOnWin()->getYMax()];
-		for (int i = 0; i < this->getPtrOnWin()->getXMax() - 2; i++) {
+		for (int i = 0; i < BG_SIZE - 2; i++) {
 			if (rand() % 100 < 4) //randomising our spray string.
 				this->_tmp[i] = '*';
 			else
 				this->_tmp[i] = ' ';
 		}
 		for (int j = 0; j < this->getPtrOnWin()->getYMax(); j++) {
-			this->_indeces[j] = rand() % 20; //randomising indeces for it.
+			this->_indeces[j] = rand() % 100; //randomising indeces for it.
 		}
-		this->_map_iter = this->getPtrOnWin()->getXMax() - 2;
+//		this->_map_iter = this->getPtrOnWin()->getXMax() - 2;
 	}
 	for (int j = 1, i = 0; j < this->getPtrOnWin()->getYMax() - 1; j++, i++) {
-		mvwprintw(this->getPtrOnWin()->getWinPtr(), j, 1, this->_tmp + this->_indeces[i]);
-		if (this->_indeces[i] > (this->getPtrOnWin()->getXMax() - 2))
+		mvwprintw(this->getPtrOnWin()->getWinPtr(), j, 1, tmp.assign((this->_tmp + this->_indeces[i])).substr(0, this->getPtrOnWin()->getXMax() - 2).c_str());
+		if (this->_indeces[i] > BG_SIZE - 2)
 		{
 			this->_indeces[i] = 0;
 /*			for (int z = 0; z < this->getPtrOnWin()->getYMax(); z++){
